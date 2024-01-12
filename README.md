@@ -2,44 +2,49 @@
 Take home assessment for Gray Matter Analytics
 
 
-# NYC Taxi & Limousine Commission (TLC) Yellow Dataset Processing
+# NYC Taxi Data Processing
 
-This script demonstrates how to process the NYC TLC Yellow dataset using Azure Machine Learning (AML) Open Datasets and Dask. The goal is to clean, transform, and aggregate the data, and then save it to both CSV and Parquet formats.
+This script is designed to process NYC Taxi data using Azure Machine Learning (AML) SDK Open Datasets and Dask for parallelized computation. It extracts, transforms, and loads the data into both CSV and Parquet formats. The script focuses on aggregating and summarizing taxi trip data based on payment type, year, and month.
 
-## Setup
+## Prerequisites
 
-Make sure to install the required libraries:
+Make sure you have the necessary dependencies installed. You can install them using the following:
 
-```bash
-pip install azureml.opendatasets dask pandas
-```
-or can run and install the requirements.txt file to install all the needed libraries
+'pip install azureml-opendatasets dask pandas pyarrow'
 
-## Code Explanation
+## Usage
 
-1. **Import Libraries:**
+1. Open the script `data_processing.py` in your preferred Python environment.
 
-2. **Define Date Range:**
+2. Set the desired date range for data extraction by modifying the `start_date` and `end_date` parameters in the `process_data` function.
 
-3. **Load NYC TLC Data into Dask DataFrame:**
+   nyc_tlc = extract("2018-12-27", "2018-12-31")
 
-4. **Create Month and Year Columns:**
+3. Run the script. The data will be processed, and the results will be saved in both CSV and Parquet formats.
 
-5. **Drop Unnecessary Columns:**
+4. Check the specified file paths for the processed data:
 
-6. **Convert Data Type:**`
+   - CSV file: `nyc_tlc_processed.csv`
+   - Parquet file: `nyc_tlc_processed.parquet`
 
-7. **Group and Aggregate Data:**
+## Script Structure
 
-8. **Sort Data:**
+### 1. Extract
 
-9. **Save to CSV:**
+The `extract` function initializes the NYC Taxi dataset using AML SDK Open Datasets and converts it into a Dask DataFrame with specified partitions.
 
-10. **Save to Parquet:**
+### 2. Transform
 
-## Output
+The `transform` function processes and aggregates the data. It creates new columns for the month and year, drops unnecessary columns, and calculates mean values for various trip attributes.
 
-- Processed CSV file: `nyc_tlc_processed.csv`
-- Processed Parquet file: `nyc_tlc_processed.parquet`
+### 3. Load
 
-Feel free to customize the file paths and parameters based on your specific requirements otherwise a copy is saved to the directory one is in.
+The `load` function saves the processed data to both CSV and Parquet formats.
+
+### 4. Process Data
+
+The `process_data` function orchestrates the entire data processing pipeline. It sets the date range for data extraction, calls the extract, transform, and load functions, and saves the results.
+
+## Note
+
+Ensure that you have the required permissions and correct file paths for saving the processed data. Adjust the script parameters based on your analysis requirements.
