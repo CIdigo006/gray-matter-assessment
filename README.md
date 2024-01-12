@@ -42,4 +42,4 @@ or can run and install the requirements.txt file to install all the needed libra
 - Processed CSV file: `nyc_tlc_processed.csv`
 - Processed Parquet file: `nyc_tlc_processed.parquet`
 
-Feel free to customize the file paths and parameters based on your specific requirements.
+Feel free to customize the file paths and parameters based on your specific requirements otherwise a copy is saved to the directory one is in.
