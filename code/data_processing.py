@@ -25,6 +25,10 @@ def transform(nyc_tlc_df):
                                                                                "tipAmount": "mean", "tollsAmount": "mean", 
                                                                                "totalAmount": "mean"})
     nyc_tlc_sorted = nyc_tlc_grouped.sort_values(['paymentType', 'puYear', 'puMonth'], ascending=[True, True, True])
+    column_map = {'passengerCount': 'mean_passengerCount', "fareAmount": "mean_fareAmount", 
+                  "extra": "mean_extra", "mtaTax": "mean_mtaTax", "improvementSurcharge": "mean_improvementSurcharge", 
+                  "tipAmount": "mean_tipAmount", "tollsAmount": "mean_tollsAmount", "totalAmount": "mean_totalAmount"}
+    nyc_tlc_sorted = nyc_tlc_sorted.rename(columns = column_map)
     return nyc_tlc_sorted
 
 def load(nyc_tlc_sorted):
@@ -45,4 +49,3 @@ def process_data():
     load(nyc_tlc_sorted)
 
 process_data()
-# breakpoint()
